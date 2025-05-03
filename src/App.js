@@ -1,6 +1,6 @@
 // App.js
 
-import { useState } from 'react'; // Importing useState hook from React
+import { useState, useMemo } from 'react'; // Importing useState and useMemo hooks from React
 import Grandparent from './Grandparent'; // Importing Grandparent component
 import { MyContext } from './MyContext'; // Importing MyContext for message context
 import ThemeContext from './Theme/ThemeContext'; // Importing ThemeContext for theme management
@@ -29,13 +29,20 @@ const App = () => {
   // Function to log out a user
   const logout = () => setUser(null);
 
+  // Memoize the auth context value to avoid unnecessary re-renders
+ 
+  // useMemo ensures that the authValue object is only recreated when the 'user' state changes, improving performance by preventing unnecessary re-renders.
+  // It is particularly useful for optimizing expensive computations or stabilizing references to objects/arrays passed as props.
+  // In this case, it prevents unnecessary re-renders of components consuming the AuthContext.
+ const authValue = useMemo(() => ({ user, login, logout }), [user]);
+ 
   return (
     // Provide the message context to the entire component tree
     <MyContext.Provider value={{ message }}>
       {/* Provide the theme context to the entire component tree */}
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
-        {/* Provide the auth context to the entire component tree */}
-        <AuthContext.Provider value={{ user, login, logout }}>
+        {/* Provide the memoized auth context to the entire component tree */}
+        <AuthContext.Provider value={authValue}>
           <div className={theme === 'dark' ? 'dark-theme' : 'light-theme'}>
             {/* Title of the application */}
             <h1>Context Example</h1>
