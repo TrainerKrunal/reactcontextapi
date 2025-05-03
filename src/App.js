@@ -10,6 +10,8 @@ import AuthContext from './Auth/AuthContext'; // Importing AuthContext for authe
 import AuthComponent from './Auth/AuthComponent'; // Importing AuthComponent for login/logout functionality
 import './Theme/Theme.css'; // Importing CSS file for styling
 import BasicTableComponent from './DataGrids/BasicTableComponent'; // Importing BasicTableComponent
+import AgGridComponent from './DataGrids/AgGridComponent'; // Importing AgGridComponent
+import ReactMemoDemo from './PerformanceOptimization/reactMemoDemo'; // Importing ReactMemoDemo component
 
 const App = () => {
   // State to manage the theme (light or dark)
@@ -62,8 +64,12 @@ const App = () => {
             <Grandparent />
             {/* Authentication component to handle login/logout */}
             <AuthComponent />
-            {/* Render the BasicTableComponent for testing */}
-            <BasicTableComponent />
+            {/* Render the AgGridComponent for testing */}
+            <AgGridComponent />
+            {/* Commenting out BasicTableComponent for now */}
+            {/* <BasicTableComponent /> */}
+            {/* Render the ReactMemoDemo component for testing */}
+            <ReactMemoDemo />
           </div>
         </AuthContext.Provider>
       </ThemeContext.Provider>
