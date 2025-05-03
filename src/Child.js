@@ -1,13 +1,11 @@
 // Child.js
 
+import { useContext } from 'react';
 import { MyContext } from './MyContext';
 
 const Child = () => {
-  return (
-    <MyContext.Consumer>
-      {({ message }) => <p>Message in Child: {message}</p>}
-    </MyContext.Consumer>
-  );
+  const { message } = useContext(MyContext);
+  return <p>Message in Child: {message}</p>;
 };
 
 export default Child;
