@@ -14,6 +14,8 @@ import AgGridComponent from './DataGrids/AgGridComponent'; // Importing AgGridCo
 import ReactMemoDemo from './PerformanceOptimization/reactMemoDemo'; // Importing ReactMemoDemo component
 import UseMemoDemo from './PerformanceOptimization/useMemoDemo'; // Importing UseMemoDemo component
 import UseCallBackDemo from './PerformanceOptimization/useCallBackDemo'; // Importing UseCallBackDemo component
+import ServerComponentDemo from './PerformanceOptimization/ServerComponentDemo'; // Importing ServerComponentDemo component
+import FetchDemo from './CustomHooks/FetchDemo'; // Importing FetchDemo component
 
 const App = () => {
   // State to manage the theme (light or dark)
@@ -76,6 +78,10 @@ const App = () => {
             <UseMemoDemo />
             {/* Render the UseCallBackDemo component for testing */}
             <UseCallBackDemo />
+            {/* Render the ServerComponentDemo component for testing */}
+            <ServerComponentDemo />
+            {/* Render the FetchDemo component for testing */}
+            <FetchDemo />
           </div>
         </AuthContext.Provider>
       </ThemeContext.Provider>
