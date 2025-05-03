@@ -18,6 +18,7 @@ import ServerComponentDemo from './PerformanceOptimization/ServerComponentDemo';
 import FetchDemo from './CustomHooks/FetchDemo'; // Importing FetchDemo component
 import UseLocalStorageDemo from './CustomHooks/useLocalStorageDemo'; // Importing UseLocalStorageDemo component
 import FormDemo from './CustomHooks/FormDemo'; // Importing FormDemo component
+import LoggerDemo from './HOC/LoggerDemo'; // Importing LoggerDemo component
 
 const App = () => {
   // State to manage the theme (light or dark)
@@ -88,6 +89,8 @@ const App = () => {
             <UseLocalStorageDemo />
             {/* Render the FormDemo component for testing */}
             <FormDemo />
+            {/* Render the LoggerDemo component for testing */}
+            <LoggerDemo message="Hello from HOC!" />
           </div>
         </AuthContext.Provider>
       </ThemeContext.Provider>
