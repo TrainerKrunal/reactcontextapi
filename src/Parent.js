@@ -2,8 +2,8 @@
 
 import Child from './Child';
 
-const Parent = ({ message }) => {
-  return <Child message={message} />;
+const Parent = () => {
+  return <Child />;
 };
 
 export default Parent;

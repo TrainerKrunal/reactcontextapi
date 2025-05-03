@@ -2,8 +2,8 @@
 
 import Parent from './Parent';
 
-const Grandparent = ({ message }) => {
-  return <Parent message={message} />;
+const Grandparent = () => {
+  return <Parent />;
 };
 
 export default Grandparent;
