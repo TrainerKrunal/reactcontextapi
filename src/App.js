@@ -1,13 +1,14 @@
 // App.js
 
-import { useState } from 'react';
-
-import Grandparent from './Grandparent';
-import { MyContext } from './MyContext';
-import ThemeContext from './Theme/ThemeContext';
-import ThemeToggleButton from './Theme/ThemeToggleButton';
-import ChildComponent from './Theme/ChildComponent';
-import './Theme/Theme.css';
+import { useState } from 'react'; // Importing useState hook from React
+import Grandparent from './Grandparent'; // Importing Grandparent component
+import { MyContext } from './MyContext'; // Importing MyContext for message context
+import ThemeContext from './Theme/ThemeContext'; // Importing ThemeContext for theme management
+import ThemeToggleButton from './Theme/ThemeToggleButton'; // Importing ThemeToggleButton component
+import ChildComponent from './Theme/ChildComponent'; // Importing ChildComponent to display current theme
+import AuthContext from './Auth/AuthContext'; // Importing AuthContext for authentication
+import AuthComponent from './Auth/AuthComponent'; // Importing AuthComponent for login/logout functionality
+import './Theme/Theme.css'; // Importing CSS file for styling
 
 const App = () => {
   // State to manage the theme (light or dark)
@@ -16,30 +17,45 @@ const App = () => {
   // State to manage the message
   const [message, setMessage] = useState('Hello from App!');
 
+  // State to manage authentication
+  const [user, setUser] = useState(null);
+
   // Function to toggle the theme between light and dark
   const toggleTheme = () => setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+
+  // Function to log in a user
+  const login = () => setUser('Krunal');
+
+  // Function to log out a user
+  const logout = () => setUser(null);
 
   return (
     // Provide the message context to the entire component tree
     <MyContext.Provider value={{ message }}>
       {/* Provide the theme context to the entire component tree */}
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
-        <div className={theme === 'dark' ? 'dark-theme' : 'light-theme'}>
-          <h1>Theme Context Example</h1>
-          {/* Button to toggle the theme */}
-          <ThemeToggleButton />
-          {/* Display the current theme */}
-          <ChildComponent />
-          {/* Input box to update the message */}
-          <input
-            type="text"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Update message"
-          />
-          {/* Grandparent component */}
-          <Grandparent />
-        </div>
+        {/* Provide the auth context to the entire component tree */}
+        <AuthContext.Provider value={{ user, login, logout }}>
+          <div className={theme === 'dark' ? 'dark-theme' : 'light-theme'}>
+            {/* Title of the application */}
+            <h1>Context Example</h1>
+            {/* Button to toggle the theme */}
+            <ThemeToggleButton />
+            {/* Display the current theme */}
+            <ChildComponent />
+            {/* Input box to update the message */}
+            <input
+              type="text"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Update message"
+            />
+            {/* Grandparent component to demonstrate prop drilling */}
+            <Grandparent />
+            {/* Authentication component to handle login/logout */}
+            <AuthComponent />
+          </div>
+        </AuthContext.Provider>
       </ThemeContext.Provider>
     </MyContext.Provider>
   );
