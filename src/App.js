@@ -13,6 +13,7 @@ import BasicTableComponent from './DataGrids/BasicTableComponent'; // Importing 
 import AgGridComponent from './DataGrids/AgGridComponent'; // Importing AgGridComponent
 import ReactMemoDemo from './PerformanceOptimization/reactMemoDemo'; // Importing ReactMemoDemo component
 import UseMemoDemo from './PerformanceOptimization/useMemoDemo'; // Importing UseMemoDemo component
+import UseCallBackDemo from './PerformanceOptimization/useCallBackDemo'; // Importing UseCallBackDemo component
 
 const App = () => {
   // State to manage the theme (light or dark)
@@ -73,6 +74,8 @@ const App = () => {
             <ReactMemoDemo />
             {/* Render the UseMemoDemo component for testing */}
             <UseMemoDemo />
+            {/* Render the UseCallBackDemo component for testing */}
+            <UseCallBackDemo />
           </div>
         </AuthContext.Provider>
       </ThemeContext.Provider>
