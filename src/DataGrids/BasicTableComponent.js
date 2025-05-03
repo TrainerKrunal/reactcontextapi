@@ -2,6 +2,7 @@
 
 // Import React to create the component
 import React, { useState, useEffect } from 'react';
+import { FixedSizeList as List } from 'react-window'; // Import FixedSizeList for virtualization
 
 const BasicTableComponent = () => {
   // Generate 1000 rows of sample data
@@ -22,28 +23,37 @@ const BasicTableComponent = () => {
     };
   }, []); // Run only once after the component mounts
 
+  console.log('Data:', data); // Log the data array to verify its content
+
+  const Row = ({ index, style }) => {
+    console.log('Rendering Row:', index); // Log each row being rendered
+    return (
+      <div style={style}> {/* Apply styles for each row */}
+        #{data[index].id} — {data[index].name} — {data[index].value} {/* Display row data */}
+      </div>
+    );
+  };
+
+  const VirtualList = () => (
+    <List
+      height={400} // Set the height of the virtualized list
+      itemCount={data.length} // Total number of items in the list
+      itemSize={35} // Height of each item in the list
+      width={'100%'} // Set the width of the list
+    >
+      {({ index, style }) => (
+        <Row index={index} style={style} /> // Pass props correctly to the Row component
+      )}
+    </List>
+  );
+
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
       <div>
         {/* Title of the table */}
-        <h2>Basic Data Table</h2>
-        {/* Table structure with border and padding */}
-        <table border="1" cellPadding="5">
-          <thead>
-            <tr>
-              {/* Table headers */}
-              <th>ID</th><th>Name</th><th>Value</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* Map through the data array to render each row */}
-            {data.map(row => (
-              <tr key={row.id}> {/* Unique key for each row */}
-                <td>{row.id}</td><td>{row.name}</td><td>{row.value}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <h2>Basic Data Table with Virtualization</h2>
+        {/* Render the virtualized list */}
+        <VirtualList />
       </div>
       <div>
         {/* Display render time */}
