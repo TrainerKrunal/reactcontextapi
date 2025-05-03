@@ -19,6 +19,7 @@ import FetchDemo from './CustomHooks/FetchDemo'; // Importing FetchDemo componen
 import UseLocalStorageDemo from './CustomHooks/useLocalStorageDemo'; // Importing UseLocalStorageDemo component
 import FormDemo from './CustomHooks/FormDemo'; // Importing FormDemo component
 import LoggerDemo from './HOC/LoggerDemo'; // Importing LoggerDemo component
+import AuthenticationDemo from './HOC/AuthenticationDemo'; // Importing AuthenticationDemo component
 
 const App = () => {
   // State to manage the theme (light or dark)
@@ -29,6 +30,9 @@ const App = () => {
 
   // State to manage authentication
   const [user, setUser] = useState(null);
+
+  // New state to manage authentication for testing AuthenticationDemo
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   // Function to toggle the theme between light and dark
   const toggleTheme = () => setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
@@ -91,6 +95,13 @@ const App = () => {
             <FormDemo />
             {/* Render the LoggerDemo component for testing */}
             <LoggerDemo message="Hello from HOC!" />
+            {/* Render the AuthenticationDemo component with a toggle button for testing */}
+            <div>
+              <button onClick={() => setIsAuthenticated((prev) => !prev)}>
+                Toggle Authentication
+              </button>
+              <AuthenticationDemo isAuthenticated={isAuthenticated} />
+            </div>
           </div>
         </AuthContext.Provider>
       </ThemeContext.Provider>
