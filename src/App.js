@@ -17,6 +17,7 @@ import UseCallBackDemo from './PerformanceOptimization/useCallBackDemo'; // Impo
 import ServerComponentDemo from './PerformanceOptimization/ServerComponentDemo'; // Importing ServerComponentDemo component
 import FetchDemo from './CustomHooks/FetchDemo'; // Importing FetchDemo component
 import UseLocalStorageDemo from './CustomHooks/useLocalStorageDemo'; // Importing UseLocalStorageDemo component
+import FormDemo from './CustomHooks/FormDemo'; // Importing FormDemo component
 
 const App = () => {
   // State to manage the theme (light or dark)
@@ -85,6 +86,8 @@ const App = () => {
             <FetchDemo />
             {/* Render the UseLocalStorageDemo component for testing */}
             <UseLocalStorageDemo />
+            {/* Render the FormDemo component for testing */}
+            <FormDemo />
           </div>
         </AuthContext.Provider>
       </ThemeContext.Provider>
