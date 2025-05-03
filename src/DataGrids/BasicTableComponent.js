@@ -14,6 +14,19 @@ const BasicTableComponent = () => {
   }));
 
   const [renderTime, setRenderTime] = useState(0); // State to track render time
+  const [page, setPage] = useState(0); // State to track the current page
+  const pageSize = 10; // Number of rows per page
+  const [sortKey, setSortKey] = useState('id'); // State to track the sorting key
+
+  // Function to sort data by a specific key
+  const sortBy = key => {
+    setSortKey(key);
+  };
+
+  // Paginate and sort the data
+  const paginatedData = [...data]
+    .sort((a, b) => (a[sortKey] > b[sortKey] ? 1 : -1))
+    .slice(page * pageSize, (page + 1) * pageSize);
 
   useEffect(() => {
     const start = performance.now(); // Start timing
@@ -23,13 +36,11 @@ const BasicTableComponent = () => {
     };
   }, []); // Run only once after the component mounts
 
-  console.log('Data:', data); // Log the data array to verify its content
-
   const Row = ({ index, style }) => {
     console.log('Rendering Row:', index); // Log each row being rendered
     return (
       <div style={style}> {/* Apply styles for each row */}
-        #{data[index].id} — {data[index].name} — {data[index].value} {/* Display row data */}
+        #{paginatedData[index].id} — {paginatedData[index].name} — {paginatedData[index].value} {/* Display row data */}
       </div>
     );
   };
@@ -48,12 +59,35 @@ const BasicTableComponent = () => {
   );
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <div>
         {/* Title of the table */}
-        <h2>Basic Data Table with Virtualization</h2>
-        {/* Render the virtualized list */}
-        <VirtualList />
+        <h2>Basic Data Table with Sorting and Pagination</h2>
+        {/* Sorting buttons */}
+        <div>
+          <button onClick={() => sortBy('id')}>Sort by ID</button>
+          <button onClick={() => sortBy('name')}>Sort by Name</button>
+          <button onClick={() => sortBy('value')}>Sort by Value</button>
+        </div>
+        {/* Render the paginated data */}
+        {paginatedData.map((row, index) => (
+          <div key={row.id}>
+            #{row.id} — {row.name} — {row.value}
+          </div>
+        ))}
+        {/* Pagination controls */}
+        <div>
+          <button onClick={() => setPage(prev => Math.max(prev - 1, 0))} disabled={page === 0}>
+            Previous
+          </button>
+          <span> Page {page + 1} </span>
+          <button
+            onClick={() => setPage(prev => (prev + 1) * pageSize < data.length ? prev + 1 : prev)}
+            disabled={(page + 1) * pageSize >= data.length}
+          >
+            Next
+          </button>
+        </div>
       </div>
       <div>
         {/* Display render time */}
