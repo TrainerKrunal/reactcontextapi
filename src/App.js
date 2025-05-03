@@ -9,6 +9,7 @@ import ChildComponent from './Theme/ChildComponent'; // Importing ChildComponent
 import AuthContext from './Auth/AuthContext'; // Importing AuthContext for authentication
 import AuthComponent from './Auth/AuthComponent'; // Importing AuthComponent for login/logout functionality
 import './Theme/Theme.css'; // Importing CSS file for styling
+import BasicTableComponent from './DataGrids/BasicTableComponent'; // Importing BasicTableComponent
 
 const App = () => {
   // State to manage the theme (light or dark)
@@ -61,6 +62,8 @@ const App = () => {
             <Grandparent />
             {/* Authentication component to handle login/logout */}
             <AuthComponent />
+            {/* Render the BasicTableComponent for testing */}
+            <BasicTableComponent />
           </div>
         </AuthContext.Provider>
       </ThemeContext.Provider>
