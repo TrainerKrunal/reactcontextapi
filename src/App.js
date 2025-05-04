@@ -20,6 +20,7 @@ import UseLocalStorageDemo from './CustomHooks/useLocalStorageDemo'; // Importin
 import FormDemo from './CustomHooks/FormDemo'; // Importing FormDemo component
 import LoggerDemo from './HOC/LoggerDemo'; // Importing LoggerDemo component
 import AuthenticationDemo from './HOC/AuthenticationDemo'; // Importing AuthenticationDemo component
+import BankUser from './CRUD/BankUser'; // Importing BankUser component
 
 const App = () => {
   // State to manage the theme (light or dark)
@@ -102,6 +103,8 @@ const App = () => {
               </button>
               <AuthenticationDemo isAuthenticated={isAuthenticated} />
             </div>
+            {/* Render the BankUser component for testing */}
+            <BankUser />
           </div>
         </AuthContext.Provider>
       </ThemeContext.Provider>
