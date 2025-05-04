@@ -18,6 +18,7 @@ const TopNavigation = () => {
         <li><Link to="/hoc">HOC</Link></li>
         <li><Link to="/performance-optimization">Performance Optimization</Link></li>
         <li><Link to="/create-user">CRUD</Link></li>
+        <li><Link to="/redux-basic">Redux Basics</Link></li> {/* New link for Redux Basics */}
       </ul>
     </nav>
   );

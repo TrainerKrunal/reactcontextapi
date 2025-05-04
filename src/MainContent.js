@@ -14,6 +14,7 @@ import FetchDemo from './CustomHooks/FetchDemo';
 import AgGridComponent from './DataGrids/AgGridComponent';
 import LoggerDemo from './HOC/LoggerDemo';
 import ReactMemoDemo from './PerformanceOptimization/reactMemoDemo';
+import ToDoList from './ReduxDeepDrive/ToDoList';
 
 /**
  * MainContent Component
@@ -68,6 +69,7 @@ const MainContent = () => {
               path="/list-user"
               element={<BankUser view="list" setView={setView} />}
             />
+            <Route path="/redux-basic" element={<ToDoList />} /> {/* Route for Redux Basics */}
           </Routes>
         </AuthContext.Provider>
       </ThemeContext.Provider>
