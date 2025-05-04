@@ -7,11 +7,18 @@ import { addTodo, removeTodo } from './store';
  * 
  * This component demonstrates the use of Redux for state management.
  * It allows users to add and remove todo items.
+ * 
+ * Key Concepts:
+ * - `useSelector`: A hook to extract data from the Redux store state.
+ * - `useDispatch`: A hook to dispatch actions to the Redux store.
  */
 const ToDoList = () => {
   const [todoText, setTodoText] = useState(''); // Local state for the input field
-  const todos = useSelector((state) => state.todos); // Selector to get todos from the Redux store
-  const dispatch = useDispatch(); // Hook to dispatch actions to the Redux store
+  const todos = useSelector((state) => state.todos || []); // `useSelector` extracts the `todos` state from the Redux store
+  const dispatch = useDispatch(); // `useDispatch` provides a way to dispatch actions to the Redux store
+
+  // Added a debug log to verify the `todos` state in the component
+  console.log('Current todos:', todos);
 
   const handleAddTodo = () => {
     if (todoText.trim()) {

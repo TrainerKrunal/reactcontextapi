@@ -15,6 +15,10 @@ import AgGridComponent from './DataGrids/AgGridComponent';
 import LoggerDemo from './HOC/LoggerDemo';
 import ReactMemoDemo from './PerformanceOptimization/reactMemoDemo';
 import ToDoList from './ReduxDeepDrive/ToDoList';
+import Counter from './ReduxDeepDrive/Counter'; // Importing the Counter component
+import { Provider as ReduxProvider } from 'react-redux';
+import store from './ReduxDeepDrive/store'; // Redux Basics store
+import toolkitStore from './ReduxDeepDrive/toolkitStore'; // Redux Toolkit store
 
 /**
  * MainContent Component
@@ -69,7 +73,22 @@ const MainContent = () => {
               path="/list-user"
               element={<BankUser view="list" setView={setView} />}
             />
-            <Route path="/redux-basic" element={<ToDoList />} /> {/* Route for Redux Basics */}
+            <Route
+              path="/redux-basic"
+              element={
+                <ReduxProvider store={store}>
+                  <ToDoList />
+                </ReduxProvider>
+              }
+            /> {/* Route for Redux Basics */}
+            <Route
+              path="/redux-toolkit"
+              element={
+                <ReduxProvider store={toolkitStore}>
+                  <Counter />
+                </ReduxProvider>
+              }
+            /> {/* Route for Redux Toolkit Basics */}
           </Routes>
         </AuthContext.Provider>
       </ThemeContext.Provider>

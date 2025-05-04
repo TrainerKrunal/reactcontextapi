@@ -4,12 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import store from './ReduxDeepDrive/store';
+import toolkitStore from './ReduxDeepDrive/toolkitStore';
+import store from './ReduxDeepDrive/store'; // Import Redux Basics store
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+// Dynamically switch between stores based on the route
+const currentStore = window.location.pathname.includes('redux-basic') ? store : toolkitStore;
+
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={currentStore}> {/* Use the appropriate store */}
       <App />
     </Provider>
   </React.StrictMode>
