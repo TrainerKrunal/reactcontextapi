@@ -7,7 +7,7 @@ import axios from 'axios';
  * 
  * This component displays a list of users with options to edit and delete.
  */
-const ListUser = ({ users, setUsers, setFormData, setEditingUserId }) => {
+const ListUser = ({ users = [], setUsers, setFormData, setEditingUserId }) => {
   const navigate = useNavigate(); // Hook to navigate programmatically
 
   const handleDelete = async (id) => {
@@ -24,7 +24,7 @@ const ListUser = ({ users, setUsers, setFormData, setEditingUserId }) => {
     const userToEdit = users.find((user) => user.id === id); // Find the user to edit
     setFormData({ name: userToEdit.name, email: userToEdit.email }); // Populate the form with user data
     setEditingUserId(id); // Set the ID of the user being edited
-    navigate('/'); // Navigate to the CreateUser component for editing
+    navigate('/create-user'); // Navigate to the CreateUser component for editing
   };
 
   return (

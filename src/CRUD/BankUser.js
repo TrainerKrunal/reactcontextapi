@@ -1,5 +1,4 @@
 import React from 'react'; // Importing React library
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Importing Router, Routes, and Route for navigation
 import axios from 'axios'; // Importing Axios for API calls
 import CreateUser from './CreateUser'; // Importing CreateUser component
 import ListUser from './ListUser'; // Importing ListUser component
@@ -7,9 +6,9 @@ import ListUser from './ListUser'; // Importing ListUser component
 /**
  * BankUser Component
  * 
- * This component sets up routing for CreateUser and ListUser components.
+ * This component renders CreateUser or ListUser components based on the view prop.
  */
-const BankUser = () => {
+const BankUser = ({ view, setView }) => {
   const [users, setUsers] = React.useState([]); // State to store the list of users
   const [formData, setFormData] = React.useState({ name: '', email: '' }); // State to store form data for creating or editing a user
   const [editingUserId, setEditingUserId] = React.useState(null); // State to track the ID of the user being edited
@@ -27,35 +26,31 @@ const BankUser = () => {
     fetchUsers(); // Calling the fetchUsers function when the component mounts
   }, []); // Empty dependency array ensures this runs only once
 
+  // Removed the debug log for users
+
   return (
-    <Router> {/* Setting up the Router for navigation */}
-      <Routes> {/* Defining the routes for the application */}
-        <Route
-          path="/" // Route for the CreateUser component
-          element={
-            <CreateUser
-              users={users} // Passing the users state as a prop
-              setUsers={setUsers} // Passing the setUsers function as a prop
-              formData={formData} // Passing the formData state as a prop
-              setFormData={setFormData} // Passing the setFormData function as a prop
-              editingUserId={editingUserId} // Passing the editingUserId state as a prop
-              setEditingUserId={setEditingUserId} // Passing the setEditingUserId function as a prop
-            />
-          }
+    <div>
+      {view === 'create' && (
+        <CreateUser
+          users={users}
+          setUsers={setUsers}
+          formData={formData}
+          setFormData={setFormData}
+          editingUserId={editingUserId}
+          setEditingUserId={setEditingUserId}
+          setView={setView}
         />
-        <Route
-          path="/list-user" // Route for the ListUser component
-          element={
-            <ListUser
-              users={users} // Passing the users state as a prop
-              setUsers={setUsers} // Passing the setUsers function as a prop
-              setFormData={setFormData} // Passing the setFormData function as a prop
-              setEditingUserId={setEditingUserId} // Passing the setEditingUserId function as a prop
-            />
-          }
+      )}
+      {view === 'list' && (
+        <ListUser
+          users={users}
+          setUsers={setUsers}
+          setFormData={setFormData}
+          setEditingUserId={setEditingUserId}
+          setView={setView}
         />
-      </Routes>
-    </Router>
+      )}
+    </div>
   );
 };
 

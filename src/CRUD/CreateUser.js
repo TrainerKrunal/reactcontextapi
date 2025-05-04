@@ -16,11 +16,12 @@ const CreateUser = ({ users, setUsers, formData, setFormData, editingUserId, set
     setFormData({ ...formData, [name]: value });
   };
 
+  // Ensure the `users` state is updated correctly after a new user is created
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('https://jsonplaceholder.typicode.com/users', formData); // Simulated API call
-      setUsers([...users, { ...formData, id: response.data.id }]); // Add new user to the list
+      setUsers((prevUsers) => [...prevUsers, { ...formData, id: response.data.id }]); // Add new user to the list
       alert('User created successfully!');
       navigate('/list-user'); // Navigate to ListUser component
     } catch (error) {
@@ -28,19 +29,21 @@ const CreateUser = ({ users, setUsers, formData, setFormData, editingUserId, set
     }
   };
 
+  // Simulated the update locally by directly modifying the `users` state
   const handleUpdate = async (e) => {
     e.preventDefault();
+    console.log('Updating user with ID:', editingUserId);
+    console.log('Form data:', formData);
     try {
-      await axios.put(`https://jsonplaceholder.typicode.com/users/${editingUserId}`, formData); // Simulated API call
       setUsers(
         users.map((user) =>
           user.id === editingUserId ? { ...user, ...formData } : user
         )
       );
-      alert('User updated successfully!');
+      alert('User updated successfully!'); // Show confirmation message
       setFormData({ name: '', email: '' }); // Reset the form
       setEditingUserId(null); // Clear the editing user ID
-      navigate('/list-user'); // Navigate to ListUser component
+      navigate('/list-user'); // Navigate back to ListUser component
     } catch (error) {
       console.error('Error updating user:', error);
     }

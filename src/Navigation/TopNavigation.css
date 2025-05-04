@@ -1,0 +1,27 @@
+/* Styling for the TopNavigation component */
+
+.top-navigation {
+  background-color: #333;
+  overflow: hidden;
+}
+
+.top-navigation ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.top-navigation li {
+  padding: 14px 20px;
+}
+
+.top-navigation a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.top-navigation a:hover {
+  background-color: #575757;
+}
