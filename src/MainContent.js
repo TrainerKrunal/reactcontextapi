@@ -14,6 +14,7 @@ import FetchDemo from './CustomHooks/FetchDemo';
 import AgGridComponent from './DataGrids/AgGridComponent';
 import LoggerDemo from './HOC/LoggerDemo';
 import ReactMemoDemo from './PerformanceOptimization/reactMemoDemo';
+import UseMemoDemo from './PerformanceOptimization/useMemoDemo'; // Importing useMemo demo component
 import ToDoList from './ReduxDeepDrive/ToDoList';
 import Counter from './ReduxDeepDrive/Counter'; // Importing the Counter component
 import { Provider as ReduxProvider } from 'react-redux';
@@ -21,6 +22,7 @@ import store from './ReduxDeepDrive/store'; // Redux Basics store
 import toolkitStore from './ReduxDeepDrive/toolkitStore'; // Redux Toolkit store
 import AsyncCounter from './ReduxDeepDrive/AsyncCounter'; // Importing the AsyncCounter component
 import asyncToolkitStore from './ReduxDeepDrive/asyncToolkitStore'; // Importing the async store
+import UseCallBackDemo from './PerformanceOptimization/useCallBackDemo'; // Importing the useCallback Demo component
 
 /**
  * MainContent Component
@@ -100,6 +102,10 @@ const MainContent = () => {
                 </ReduxProvider>
               }
             />
+            <Route path="/react-memo" element={<ReactMemoDemo />} />
+            <Route path="/use-memo" element={<UseMemoDemo />} />
+            <Route path="/react-callback" element={<UseCallBackDemo />} /> {/* Route for React Callback Demo */}
+            <Route path="/hoc-auth" element={<AuthenticationDemo isAuthenticated={true} />} /> {/* Route for Authentication Demo under HOC */}
           </Routes>
         </AuthContext.Provider>
       </ThemeContext.Provider>

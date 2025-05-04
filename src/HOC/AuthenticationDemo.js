@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react'; // Added useState for toggling authentication
 import withAuthentication from './withAuthentication'; // Importing the withAuthentication HOC
 
 /**
@@ -30,6 +30,17 @@ const ProtectedComponent = () => {
 };
 
 // Wrapping the ProtectedComponent with the withAuthentication HOC
-const AuthenticationDemo = withAuthentication(ProtectedComponent, FallbackComponent);
+const AuthenticationDemo = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // State to toggle authentication
+
+  return (
+    <div>
+      <button onClick={() => setIsAuthenticated((prev) => !prev)}>
+        {isAuthenticated ? 'Logout' : 'Login'}
+      </button> {/* Toggle button to switch authentication state */}
+      {isAuthenticated ? <ProtectedComponent /> : <FallbackComponent />} {/* Conditionally render components */}
+    </div>
+  );
+};
 
 export default AuthenticationDemo;
