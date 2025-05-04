@@ -19,6 +19,8 @@ import Counter from './ReduxDeepDrive/Counter'; // Importing the Counter compone
 import { Provider as ReduxProvider } from 'react-redux';
 import store from './ReduxDeepDrive/store'; // Redux Basics store
 import toolkitStore from './ReduxDeepDrive/toolkitStore'; // Redux Toolkit store
+import AsyncCounter from './ReduxDeepDrive/AsyncCounter'; // Importing the AsyncCounter component
+import asyncToolkitStore from './ReduxDeepDrive/asyncToolkitStore'; // Importing the async store
 
 /**
  * MainContent Component
@@ -89,6 +91,15 @@ const MainContent = () => {
                 </ReduxProvider>
               }
             /> {/* Route for Redux Toolkit Basics */}
+            {/* Added a route for Async Logic with `createAsyncThunk` */}
+            <Route
+              path="/redux-async"
+              element={
+                <ReduxProvider store={asyncToolkitStore}>
+                  <AsyncCounter />
+                </ReduxProvider>
+              }
+            />
           </Routes>
         </AuthContext.Provider>
       </ThemeContext.Provider>

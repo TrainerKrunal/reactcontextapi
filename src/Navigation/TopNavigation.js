@@ -20,6 +20,7 @@ const TopNavigation = () => {
         <li><Link to="/create-user">CRUD</Link></li>
         <li><Link to="/redux-basic">Redux Basics</Link></li> {/* New link for Redux Basics */}
         <li><Link to="/redux-toolkit">Redux Toolkit Basics</Link></li> {/* New link for Redux Toolkit Basics */}
+        <li><Link to="/redux-async">Redux Async Logic</Link></li> {/* New link for Redux Async Logic */}
       </ul>
     </nav>
   );
