@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import toolkitStore from './ReduxDeepDrive/toolkitStore';
 import store from './ReduxDeepDrive/store'; // Import Redux Basics store
+import { ApolloProvider } from '@apollo/client';
+import client from './GraphQL/ApolloClient';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -15,7 +17,9 @@ const currentStore = window.location.pathname.includes('redux-basic') ? store : 
 root.render(
   <React.StrictMode>
     <Provider store={currentStore}> {/* Use the appropriate store */}
-      <App />
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
     </Provider>
   </React.StrictMode>
 );
