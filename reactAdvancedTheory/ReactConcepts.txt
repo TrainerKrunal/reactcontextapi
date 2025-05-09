@@ -1,0 +1,41 @@
+### React Concepts
+
+1. **React Context API**:
+   - Provides a way to share values like themes or authentication status between components without passing props manually at every level.
+   - Example:
+     ```javascript
+     const ThemeContext = React.createContext('light');
+     ```
+
+2. **Higher-Order Components (HOC)**:
+   - A function that takes a component and returns a new component with additional functionality.
+   - Example:
+     ```javascript
+     const withLogger = (WrappedComponent) => {
+       return (props) => {
+         console.log('Rendering component:', WrappedComponent.name);
+         return <WrappedComponent {...props} />;
+       };
+     };
+     ```
+
+3. **React.memo**:
+   - A higher-order component that prevents unnecessary re-renders by memoizing the component.
+   - Example:
+     ```javascript
+     const MemoizedComponent = React.memo(MyComponent);
+     ```
+
+4. **useMemo**:
+   - A hook that memoizes the result of a calculation to optimize performance.
+   - Example:
+     ```javascript
+     const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+     ```
+
+5. **useCallback**:
+   - A hook that memoizes a callback function to prevent unnecessary re-creations.
+   - Example:
+     ```javascript
+     const memoizedCallback = useCallback(() => doSomething(a, b), [a, b]);
+     ```

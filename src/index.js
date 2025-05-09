@@ -12,7 +12,11 @@ import client from './GraphQL/ApolloClient';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 // Dynamically switch between stores based on the route
-const currentStore = window.location.pathname.includes('redux-basic') ? store : toolkitStore;
+const currentStore = window.location.pathname.includes("toolkit")
+  ? toolkitStore
+  : window.location.pathname.includes("async-toolkit")
+  ? asyncToolkitStore
+  : store;
 
 root.render(
   <React.StrictMode>

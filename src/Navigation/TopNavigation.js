@@ -31,6 +31,10 @@ const TopNavigation = () => {
           <li><Link to="/graphql-query">GraphQL Query Demo</Link></li>
           <li><Link to="/graphql-mutation">GraphQL Mutation Demo</Link></li>
           <li><Link to="/graphql-subscription">GraphQL Subscription Demo</Link></li>
+          <li><Link to="/redux">Redux</Link></li>
+          <li><Link to="/displayTodo">Display ToDo</Link></li>
+          <li><Link to="/redux-toolkit">Redux Toolkit</Link></li>
+          <li><Link to="/async-toolkit">Redux Async</Link></li>
         </ul>
       </nav>
 

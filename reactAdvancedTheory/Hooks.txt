@@ -1,0 +1,53 @@
+### React Hooks
+
+1. **useState**:
+   - A hook that lets you add state to functional components.
+   - Example:
+     ```javascript
+     const [count, setCount] = useState(0);
+     ```
+
+2. **useEffect**:
+   - A hook that lets you perform side effects in functional components.
+   - Example:
+     ```javascript
+     useEffect(() => {
+       document.title = `Count: ${count}`;
+     }, [count]);
+     ```
+
+3. **useContext**:
+   - A hook that lets you consume context values in functional components.
+   - Example:
+     ```javascript
+     const theme = useContext(ThemeContext);
+     ```
+
+4. **useMemo**:
+   - A hook that memoizes the result of a calculation to optimize performance.
+   - Example:
+     ```javascript
+     const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+     ```
+
+5. **useCallback**:
+   - A hook that memoizes a callback function to prevent unnecessary re-creations.
+   - Example:
+     ```javascript
+     const memoizedCallback = useCallback(() => doSomething(a, b), [a, b]);
+     ```
+
+6. **useSelector (Redux)**:
+   - A hook to extract data from the Redux store state.
+   - Example:
+     ```javascript
+     const todos = useSelector((state) => state.todos);
+     ```
+
+7. **useDispatch (Redux)**:
+   - A hook to dispatch actions to the Redux store.
+   - Example:
+     ```javascript
+     const dispatch = useDispatch();
+     dispatch(addTodo({ id: 1, text: 'Learn Redux' }));
+     ```

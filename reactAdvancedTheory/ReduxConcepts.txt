@@ -1,0 +1,53 @@
+### Redux Concepts
+
+1. **Store**:
+   - The single source of truth for your application's state.
+   - Example:
+     ```javascript
+     const store = createStore(reducer);
+     ```
+
+2. **Actions**:
+   - Plain JavaScript objects that describe what you want to do.
+   - Example:
+     ```javascript
+     const addTodo = (todo) => ({ type: 'ADD_TODO', payload: todo });
+     ```
+
+3. **Reducers**:
+   - Pure functions that take the current state and an action, and return the new state.
+   - Example:
+     ```javascript
+     const todoReducer = (state = [], action) => {
+       switch (action.type) {
+         case 'ADD_TODO':
+           return [...state, action.payload];
+         default:
+           return state;
+       }
+     };
+     ```
+
+4. **Redux Toolkit**:
+   - Simplifies Redux setup with utilities like `createSlice` and `configureStore`.
+   - Example:
+     ```javascript
+     const counterSlice = createSlice({
+       name: 'counter',
+       initialState: { value: 0 },
+       reducers: {
+         increment: (state) => { state.value += 1; },
+         decrement: (state) => { state.value -= 1; },
+       },
+     });
+     ```
+
+5. **Middleware**:
+   - Functions that intercept actions before they reach the reducer.
+   - Example:
+     ```javascript
+     const loggerMiddleware = (store) => (next) => (action) => {
+       console.log('Dispatching:', action);
+       return next(action);
+     };
+     ```
