@@ -30,6 +30,8 @@ const ProtectedComponent = () => {
 };
 
 // Wrapping the ProtectedComponent with the withAuthentication HOC
+const ProtectedComponentWithAuth = withAuthentication(ProtectedComponent, FallbackComponent); // Pass FallbackComponent to the HOC
+
 const AuthenticationDemo = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // State to toggle authentication
 
@@ -38,7 +40,7 @@ const AuthenticationDemo = () => {
       <button onClick={() => setIsAuthenticated((prev) => !prev)}>
         {isAuthenticated ? 'Logout' : 'Login'}
       </button> {/* Toggle button to switch authentication state */}
-      {isAuthenticated ? <ProtectedComponent /> : <FallbackComponent />} {/* Conditionally render components */}
+      <ProtectedComponentWithAuth isAuthenticated={isAuthenticated} /> {/* Pass isAuthenticated as a prop */}
     </div>
   );
 };
