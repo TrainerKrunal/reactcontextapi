@@ -1,56 +1,34 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { addTodo, removeTodo } from './store';
+import { useState } from "react";
+import { useDispatch } from "react-redux"; // Importing hooks from react-redux
+import { addTodo } from "./store"; // Importing action creators from the Store file
 
 /**
- * ToDoList Component
- * 
- * This component demonstrates the use of Redux for state management.
- * It allows users to add and remove todo items.
- * 
- * Key Concepts:
- * - `useSelector`: A hook to extract data from the Redux store state.
- * - `useDispatch`: A hook to dispatch actions to the Redux store.
+ * ToDoList Component: A simple todo list application that allows users to add and remove todos
  */
+
 const ToDoList = () => {
-  const [todoText, setTodoText] = useState(''); // Local state for the input field
-  const todos = useSelector((state) => state.todos || []); // `useSelector` extracts the `todos` state from the Redux store
-  const dispatch = useDispatch(); // `useDispatch` provides a way to dispatch actions to the Redux store
+    const [todoText, setTodoText] = useState(""); // State to manage the input text for the todo
+    const dispatch = useDispatch(); // Using useDispatch to get the dispatch function from the Redux store
 
-  // Added a debug log to verify the `todos` state in the component
-  console.log('Current todos:', todos);
+    const handleAddTodo = () => {
+        if (todoText.trim()) {
+            dispatch(addTodo({ id: Date.now(), text: todoText })); // Dispatching the addTodo action with the new todo object
+            setTodoText(""); // Resetting the input text after adding the todo
+        }
+    };
 
-  const handleAddTodo = () => {
-    if (todoText.trim()) {
-      dispatch(addTodo({ id: Date.now(), text: todoText })); // Dispatch an action to add a todo
-      setTodoText(''); // Clear the input field
-    }
-  };
-
-  const handleRemoveTodo = (id) => {
-    dispatch(removeTodo(id)); // Dispatch an action to remove a todo by ID
-  };
-
-  return (
-    <div>
-      <h1>ToDo List</h1>
-      <input
-        type="text"
-        value={todoText}
-        onChange={(e) => setTodoText(e.target.value)}
-        placeholder="Enter a todo"
-      />
-      <button onClick={handleAddTodo}>Add Todo</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            {todo.text}
-            <button onClick={() => handleRemoveTodo(todo.id)}>Remove</button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    return (
+        <div>
+            <h1>ToDo List</h1>
+            <input
+                type="text"
+                value={todoText}
+                onChange={(e) => setTodoText(e.target.value)} // Updating the input text state on change
+                placeholder="Enter todo text"
+            />
+            <button onClick={handleAddTodo}>Add Todo</button> {/* Button to add the todo */}
+        </div>
+    );
 };
 
-export default ToDoList;
+export default ToDoList; // Exporting the ToDoList component

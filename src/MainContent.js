@@ -1,28 +1,32 @@
 import React, { useState, useMemo } from 'react';
-import Grandparent from './Grandparent';
 import { MyContext } from './MyContext';
 import ThemeContext from './Theme/ThemeContext';
 import ChildComponent from './Theme/ChildComponent';
 import AuthContext from './Auth/AuthContext';
 import './Theme/Theme.css';
-import AuthenticationDemo from './HOC/AuthenticationDemo';
-import BankUser from './CRUD/BankUser';
 import { Routes, Route } from 'react-router-dom';
-import ThemeToggleButton from './Theme/ThemeToggleButton';
-import AuthComponent from './Auth/AuthComponent';
-import FetchDemo from './CustomHooks/FetchDemo';
-import AgGridComponent from './DataGrids/AgGridComponent';
-import LoggerDemo from './HOC/LoggerDemo';
-import ReactMemoDemo from './PerformanceOptimization/reactMemoDemo';
-import UseMemoDemo from './PerformanceOptimization/useMemoDemo'; // Importing useMemo demo component
-import ToDoList from './ReduxDeepDrive/ToDoList';
-import Counter from './ReduxDeepDrive/Counter'; // Importing the Counter component
 import { Provider as ReduxProvider } from 'react-redux';
 import store from './ReduxDeepDrive/store'; // Redux Basics store
 import toolkitStore from './ReduxDeepDrive/toolkitStore'; // Redux Toolkit store
-import AsyncCounter from './ReduxDeepDrive/AsyncCounter'; // Importing the AsyncCounter component
 import asyncToolkitStore from './ReduxDeepDrive/asyncToolkitStore'; // Importing the async store
-import UseCallBackDemo from './PerformanceOptimization/useCallBackDemo'; // Importing the useCallback Demo component
+import Loadable from 'react-loadable';
+
+// Define a loading component to display while components are being loaded
+const Loading = () => <div>Loading...</div>;
+
+// Lazy load components using react-loadable
+const Grandparent = Loadable({ loader: () => import('./Grandparent'), loading: Loading });
+const BankUser = Loadable({ loader: () => import('./CRUD/BankUser'), loading: Loading });
+const ToDoList = Loadable({ loader: () => import('./ReduxDeepDrive/ToDoList'), loading: Loading });
+const Counter = Loadable({ loader: () => import('./ReduxDeepDrive/Counter'), loading: Loading });
+const AsyncCounter = Loadable({ loader: () => import('./ReduxDeepDrive/AsyncCounter'), loading: Loading });
+const AuthenticationDemo = Loadable({ loader: () => import('./HOC/AuthenticationDemo'), loading: Loading });
+const LoggerDemo = Loadable({ loader: () => import('./HOC/LoggerDemo'), loading: Loading });
+const ReactMemoDemo = Loadable({ loader: () => import('./PerformanceOptimization/reactMemoDemo'), loading: Loading });
+const UseMemoDemo = Loadable({ loader: () => import('./PerformanceOptimization/useMemoDemo'), loading: Loading });
+const UseCallBackDemo = Loadable({ loader: () => import('./PerformanceOptimization/useCallBackDemo'), loading: Loading });
+const FetchDemo = Loadable({ loader: () => import('./CustomHooks/FetchDemo'), loading: Loading });
+const AgGridComponent = Loadable({ loader: () => import('./DataGrids/AgGridComponent'), loading: Loading });
 
 /**
  * MainContent Component
@@ -64,7 +68,7 @@ const MainContent = () => {
                 </div>
               }
             />
-            <Route path="/auth" element={<AuthComponent />} />
+            <Route path="/auth" element={<AuthenticationDemo />} />
             <Route path="/custom-hooks" element={<FetchDemo />} />
             <Route path="/data-grid" element={<AgGridComponent />} />
             <Route path="/hoc" element={<LoggerDemo message="Hello from HOC!" />} />
